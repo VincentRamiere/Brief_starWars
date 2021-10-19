@@ -17,6 +17,9 @@ async function getMovies() {
       const TITRE = FILM.results[i].title;
       const EPISODE = FILM.results[i].episode_id;
       const OPENING = FILM.results[i].opening_crawl;
+      const DIRECTOR = FILM.results[i].director;
+      const PRODUCER = FILM.results[i].producer;
+      const DATE = FILM.results[i].release_date;
 
     //   const planets = await fetch(people.results[i].homeworld);
     //   const planet = await planets.json();
@@ -33,13 +36,24 @@ async function getMovies() {
     //       movies += `<p>${film.title}</p>`;
     //   }
       document.getElementById('container').innerHTML += `
-          <p>
+          <section class="card">
+          
           <h2>${TITRE}</h2>
+
+          <div class="data">
+          <h3> Episode ID : </h3>
           <p>${EPISODE}</p>
+          </div>
+
+          <div class="data">
+          <h3> Opening Crawl : </h3>
           <p>${OPENING}</p>
-          <p>${DIRECTOR}</p>
-          <p>${PRODUCER}</p>
-          <p>${DATE}</p>
+          </div>
+
+          
+          <p>Director : ${DIRECTOR}</p>
+          <p>Producer(s) : ${PRODUCER}</p>
+          <p>Release Date : ${DATE}</p>
 
           <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
           <div id="detailsStarships${i}"></div>
@@ -47,7 +61,7 @@ async function getMovies() {
           <div id="detailsSpecies${i}"></div>
         
 
-          </p>
+          </section>
           <hr>
           `;
       }

@@ -35,9 +35,9 @@ async function getPlanets() {
     //       movies += `<p>${film.title}</p>`;
     //   }
       document.getElementById('container').innerHTML += `
-          <p>
+          <section class="card"> 
           <h2>${PLANET_NAME}</h2>
-          <div> 
+          <div class="data"> 
             <h3>Rotation :</h3> 
             <p>${ROTATION_PERIOD}</p>
           </div>
@@ -73,8 +73,8 @@ async function getPlanets() {
           <div id="detailsFilms${i}"></div>
           <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
           <div id="detailsResidents${i}"></div>
-          </p>
-          <hr>
+          </section>
+        
           `;
       }
       const BUTTONS_FILMS = document.querySelectorAll('.films');
