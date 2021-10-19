@@ -36,10 +36,21 @@ async function getMovies() {
     //       movies += `<p>${film.title}</p>`;
     //   }
       document.getElementById('container').innerHTML += `
-          <p>
+          <section class="card">
+          
           <h2>${TITRE}</h2>
-          <p>Episode ID : ${EPISODE}</p>
-          <p>Opening Crawl : ${OPENING}</p>
+
+          <div class="data">
+          <h3> Episode ID : </h3>
+          <p>${EPISODE}</p>
+          </div>
+
+          <div class="data">
+          <h3> Opening Crawl : </h3>
+          <p>${OPENING}</p>
+          </div>
+
+          
           <p>Director : ${DIRECTOR}</p>
           <p>Producer(s) : ${PRODUCER}</p>
           <p>Release Date : ${DATE}</p>
@@ -50,7 +61,7 @@ async function getMovies() {
           <div id="detailsSpecies${i}"></div>
         
 
-          </p>
+          </section>
           <hr>
           `;
       }
