@@ -8,7 +8,7 @@ fetch(API_URL)
     return reponse.json()
 })
 .then(reponseFormat => {
-    for(let index = 0; index <6; index++){
+    for(let index = 0; index < reponseFormat.results.length; index++){
         //console.log(reponseFormat.results[index]);
         const data = reponseFormat.results[index];
         console.log(data);
