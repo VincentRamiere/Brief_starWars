@@ -15,32 +15,55 @@ async function getPeople() {
     // boucle pour parser les peoples
     for(i=0;i<total_pages;i++){
       const hero = people.results[i].name;
-      const planets = await fetch(people.results[i].homeworld);
-      const planet = await planets.json();
+    //   const planets = await fetch(people.results[i].homeworld);
+    //   const planet = await planets.json();
       //console.log(hero+' '+planet.name);
       
       // variable pour la concatenation des films
       let movies = "";
 
       // boucle pour parser les films
-      for(j=0;j<people.results[i].films.length;j++){
-          const films = await fetch(people.results[i].films[j]);
-          const film = await films.json();
-          console.log(film.title);
-          movies += `<p>${film.title}</p>`;
-      }
+    //   for(j=0;j<people.results[i].films.length;j++){
+    //       const films = await fetch(people.results[i].films[j]);
+    //       const film = await films.json();
+    //       console.log(film.title);
+    //       movies += `<p>${film.title}</p>`;
+    //   }
       document.getElementById('container').innerHTML += `
           <p>
           <h2>${hero}</h2>
-          <h3>planet : ${planet.name} <span style="font-size:12px;">(${people.results[i].homeworld})</span></h3>
-          <h4>Films : ${movies}</h4>
+          <button class="films" value="${people.results[i].films}">Voir les films</button>
+          <div id="detailsFilms${i}"></div>
           </p>
           <hr>
           `;
       }
-  
+      const BUTTONS = document.querySelectorAll('.films');
+      for(var i = 0;i < BUTTONS.length;i++){
+          let BUTTON = BUTTONS[i];
+          BUTTON.addEventListener("click", function() {
+               //console.log(BUTTON.nextElementSibling);
+               getFilms(BUTTON.value,BUTTON.nextElementSibling.id);
+        });
+      }
   }
 
+// function pour afficher les peoples et leur correspondances
+async function getFilms(liste,div) {
+    const url = liste.split(',');
+    console.log(div);
+    document.getElementById(div).innerHTML = "";
+    for(i=0;i<liste.length;i++){
+        console.log(url[i]);
+        const films = await fetch(url[i]);
+        const film = await films.json();
+        //console.log(film);
+
+        document.getElementById(div).innerHTML += `<h2>${film.title}</h2>`;
+    }
+
+
+  }
 
 // boucle pour afficher les boutons de navigations
 fetch(API_URL)
