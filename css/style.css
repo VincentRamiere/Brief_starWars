@@ -1,0 +1,47 @@
+body{
+    background-color:#2A4158;
+    }
+
+.header{
+    width: 100%;
+    text-align: center;
+    margin: 50px;;
+}
+
+ul{
+    display:flex;
+    justify-content: center;
+}
+
+li{
+    color:#fff;
+    padding: 10px;
+
+    border-radius: 10% 10% 0% 0%;
+    margin :25px;
+    list-style: none;
+    font-size:18px;
+}
+
+.active{
+    background-color: #000;
+}
+
+.body{
+    width:100%;
+}
+
+img{
+    width:100%;
+    height:auto;
+}
+
+a{
+    color:#fff;
+    font-size:18px;
+}
+
+
+a:hover{
+    text-decoration: none;
+}

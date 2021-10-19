@@ -4,7 +4,6 @@ let pageEnCours = 1;
 
 // function pour afficher les peoples et leur correspondances
 async function getPeople() {
-    const url = 'http://swapi.dev/api/people';
     const peoples = await fetch(API_URL+pageEnCours);
     const people = await peoples.json();
     const total_pages = people.count/people.results.length;
@@ -20,7 +19,7 @@ async function getPeople() {
       //console.log(hero+' '+planet.name);
       
       // variable pour la concatenation des films
-      let movies = "";
+      //let movies = "";
 
       // boucle pour parser les films
     //   for(j=0;j<people.results[i].films.length;j++){
@@ -31,7 +30,15 @@ async function getPeople() {
     //   }
       document.getElementById('container').innerHTML += `
           <p>
-          <h2>${hero}</h2>
+          <h2>Name : ${hero}</h2>
+
+          Height : ${people.results[i].height} cm<br/>
+          Weight : ${people.results[i].mass} Kg<br/>
+          Hair color : ${people.results[i].hair_color}<br/>
+          Skin color : ${people.results[i].skin_color}<br/>
+          Eye color : ${people.results[i].eye_color}<br/>
+          Birth year : ${people.results[i].birth_year}<br/>
+          Gender : ${people.results[i].gender}<br/>
           <button class="films" value="${people.results[i].films}">Voir les films</button>
           <div id="detailsFilms${i}"></div>
           </p>
@@ -50,10 +57,10 @@ async function getPeople() {
 
 // function pour afficher les peoples et leur correspondances
 async function getFilms(liste,div) {
-    const url = liste.split(',');
-    console.log(div);
+    let url = liste.split(',');
+    console.log(url);
     document.getElementById(div).innerHTML = "";
-    for(i=0;i<liste.length;i++){
+    for(i=0;i<url.length;i++){
         console.log(url[i]);
         const films = await fetch(url[i]);
         const film = await films.json();
