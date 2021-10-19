@@ -15,6 +15,9 @@ async function getMovies() {
     // boucle pour parser les films
     for(i=0;i<FILM.results.length;i++){
       const TITRE = FILM.results[i].title;
+      const EPISODE = FILM.results[i].episode_id;
+      const OPENING = FILM.results[i].opening_crawl;
+
     //   const planets = await fetch(people.results[i].homeworld);
     //   const planet = await planets.json();
       //console.log(hero+' '+planet.name);
@@ -32,6 +35,12 @@ async function getMovies() {
       document.getElementById('container').innerHTML += `
           <p>
           <h2>${TITRE}</h2>
+          <p>${EPISODE}</p>
+          <p>${OPENING}</p>
+          <p>${DIRECTOR}</p>
+          <p>${PRODUCER}</p>
+          <p>${DATE}</p>
+
           <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
           <div id="detailsStarships${i}"></div>
           <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
