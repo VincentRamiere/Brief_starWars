@@ -2,91 +2,91 @@ const API_URL =  "https://swapi.dev/api/films/?page=";
 let pageEnCours = 1;
 
 
-// function pour afficher les films et leur correspondances
+// Fonction pour afficher les films et leur correspondances
 async function getMovies() {
     const url = 'http://swapi.dev/api/films';
     const FILMS = await fetch(API_URL+pageEnCours);
     const FILM = await FILMS.json();
     const total_pages = FILM.count/FILM.results.length;
 
-    // on vide le div
+    // On vide le container
     document.getElementById('container').innerHTML = "";
 
-    // boucle pour parser les films
+    // Boucle pour parser les films
     for(i=0;i<FILM.results.length;i++){
-      const TITRE = FILM.results[i].title;
-      const EPISODE = FILM.results[i].episode_id;
-      const OPENING = FILM.results[i].opening_crawl;
-      const DIRECTOR = FILM.results[i].director;
-      const PRODUCER = FILM.results[i].producer;
-      const DATE = FILM.results[i].release_date;
+        const TITRE = FILM.results[i].title;
+        const EPISODE = FILM.results[i].episode_id;
+        const OPENING = FILM.results[i].opening_crawl;
+        const DIRECTOR = FILM.results[i].director;
+        const PRODUCER = FILM.results[i].producer;
+        const DATE = FILM.results[i].release_date;
 
-    //   const planets = await fetch(people.results[i].homeworld);
-    //   const planet = await planets.json();
-      //console.log(hero+' '+planet.name);
-      
-      // variable pour la concatenation des films
-      let movies = "";
+    // Variable pour la concatenation des films
+    let movies = "";
 
-      // boucle pour parser les films
-    //   for(j=0;j<people.results[i].films.length;j++){
-    //       const films = await fetch(people.results[i].films[j]);
-    //       const film = await films.json();
-    //       console.log(film.title);
-    //       movies += `<p>${film.title}</p>`;
-    //   }
-      document.getElementById('container').innerHTML += `
-          <section class="card">
-          
-          <h2>${TITRE}</h2>
+    // Boucle pour parser les films
+    document.getElementById('container').innerHTML += `
+        <section class="card">
+            <h2>${TITRE}</h2>
 
-          <div class="data">
-          <h3> Episode ID : </h3>
-          <p>${EPISODE}</p>
-          </div>
+            <div class="data">
+                <h3> Episode ID : </h3>
+                <p>${EPISODE}</p>
+            </div>
 
-          <div class="data">
-          <h3> Opening Crawl : </h3>
-          <p>${OPENING}</p>
-          </div>
+            <div class="data">
+                <h3> Opening Crawl : </h3>
+                <p>${OPENING}</p>
+            </div>
 
-          
-          <p>Director : ${DIRECTOR}</p>
-          <p>Producer(s) : ${PRODUCER}</p>
-          <p>Release Date : ${DATE}</p>
+            <div class="data">
+                <h3>Director : </h3>
+                <p>${DIRECTOR}</p>
+            </div>
 
-          <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
-          <div id="detailsStarships${i}"></div>
-          <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
-          <div id="detailsSpecies${i}"></div>
-        
+            <div class="data">
+                <h3>Producer(s) :</h3>
+                <p> ${PRODUCER}</p>
+            </div>
 
-          </section>
-          <hr>
-          `;
-      }
+            <div class="data">
+                <h3>Release Date :</h3>
+                <p>${DATE}</p>
+            </div>
 
-      const BUTTONS = document.querySelectorAll('.starships');
-      for(var i = 0;i < BUTTONS.length;i++){
-          let BUTTON = BUTTONS[i];
-          BUTTON.addEventListener("click", function() {
-               //console.log(BUTTON.nextElementSibling);
-               getStarships(BUTTON.value,BUTTON.nextElementSibling.id);
-        });
-      }
+            <div class="data">
+                <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
+                <div id="detailsStarships${i}"></div>
+            </div>
 
-      const BUTTONS1 = document.querySelectorAll('.species');
-      for(var i =0; i<BUTTONS1.length; i++){
-          let BUTTON1 = BUTTONS1[i];
-          BUTTON1.addEventListener("click", function() {
-              getSpecies(BUTTON1.value,BUTTON1.nextElementSibling.id);
-          }
-          );
-      }
+            <div class="data">
+                <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
+                <div id="detailsSpecies${i}"></div>
+            </div>
+        </section>
+    `;
+    }
 
-  }
+    // Bouton pour l'affichage des vaiseaux
+    const BUTTONS = document.querySelectorAll('.starships');
+        for(var i = 0;i < BUTTONS.length;i++){
+            let BUTTON = BUTTONS[i];
+            BUTTON.addEventListener("click", function() {
+            getStarships(BUTTON.value,BUTTON.nextElementSibling.id);
+            });
+        }
 
-// function pour afficher les vaisseaux
+    // Bouton pour l'affichage des espèces
+    const BUTTONS1 = document.querySelectorAll('.species');
+        for(var i =0; i<BUTTONS1.length; i++){
+            let BUTTON1 = BUTTONS1[i];
+            BUTTON1.addEventListener("click", function() {
+            getSpecies(BUTTON1.value,BUTTON1.nextElementSibling.id);
+            });
+        }
+}
+
+// Fonction pour afficher les vaisseaux
 async function getStarships(liste,div) {
     const url = liste.split(',');
     console.log(div);
@@ -95,26 +95,25 @@ async function getStarships(liste,div) {
         console.log(url[i]);
         const VAISSEAUX = await fetch(url[i]);
         const VAISSEAU = await VAISSEAUX.json();
-        //console.log(film);
 
-        document.getElementById(div).innerHTML += `<h2>${VAISSEAU.name}</h2>`;
+        document.getElementById(div).innerHTML += `<h3>${VAISSEAU.name}</h3>`;
     }
+}
 
-
-  }
-
+// Fonction pour afficher les espèces
 async function getSpecies(liste,div){
     const url = liste.split(',');
     document.getElementById(div).innerHTML = "";
     for(i=0;i<liste.length;i++){
         const ESPECES = await fetch(url[i]);
         const ESPECE = await ESPECES.json();
-        document.getElementById(div).innerHTML += `<h2>${ESPECE.name}</h2>`;
+
+        document.getElementById(div).innerHTML += `<h3>${ESPECE.name}</h3>`;
     }
 }
 
 
-// boucle pour afficher les boutons de navigations
+// Boucle pour afficher les boutons de navigations
 fetch(API_URL)
     .then(response => response.json())
     .then(data => {
@@ -154,5 +153,5 @@ fetch(API_URL)
 
 }});
 
-// initialisation de la page, pour un affichage au chargement
+// Initialisation de la page, pour un affichage au chargement
 getMovies();
