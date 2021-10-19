@@ -29,20 +29,40 @@ async function getPeople() {
     //       movies += `<p>${film.title}</p>`;
     //   }
       document.getElementById('container').innerHTML += `
-          <p>
-          <h2>Name : ${hero}</h2>
+        <section class="card">
+        <h2>Name : ${hero}</h2>
+            <div class="data"> 
+                <h3>Height :</h3> 
+                <p>${people.results[i].height} cm</p>
+            </div>
+            <div class="data"> 
+                <h3>Weight :</h3> 
+                <p>${people.results[i].mass} Kg</p>
+            </div>
+            <div class="data"> 
+                <h3>Hair color :</h3> 
+                <p>${people.results[i].hair_color}</p>
+            </div>
+            <div class="data"> 
+                <h3>Skin color :</h3> 
+                <p>${people.results[i].skin_color}</p>
+            </div>
+            <div class="data"> 
+                <h3>Eye color :</h3> 
+                <p>${people.results[i].eye_color}</p>
+            </div>
+            <div class="data"> 
+                <h3>Birth year :</h3> 
+                <p>${people.results[i].birth_year}</p>
+            </div>
+            <div class="data"> 
+                <h3>Gender :</h3> 
+                <p>${people.results[i].gender}</p>
+            </div>            
 
-          Height : ${people.results[i].height} cm<br/>
-          Weight : ${people.results[i].mass} Kg<br/>
-          Hair color : ${people.results[i].hair_color}<br/>
-          Skin color : ${people.results[i].skin_color}<br/>
-          Eye color : ${people.results[i].eye_color}<br/>
-          Birth year : ${people.results[i].birth_year}<br/>
-          Gender : ${people.results[i].gender}<br/>
-          <button class="films" value="${people.results[i].films}">Voir les films</button>
-          <div id="detailsFilms${i}"></div>
-          </p>
-          <hr>
+            <button class="films" value="${people.results[i].films}">Voir les films</button>
+            <div id="detailsFilms${i}"></div>
+        </section>
           `;
       }
       const BUTTONS = document.querySelectorAll('.films');
@@ -112,5 +132,20 @@ fetch(API_URL)
 
 }});
 
+var array = ["Luke Skywalker", "Anakin Skywalker", "Dark Vador"];
+function myFunction() {
+    // Declare variables
+    let query = myInput.value;
+    let result = array.filter(user=>user.includes(query));
+    document.getElementById('container').innerHTML = "";
+    for(i=0;i<result.length;i++){
+        document.getElementById('container').innerHTML += `<p>${result[i]}</p>`;
+    }
+
+    console.log(result);
+  
+  }
+
+
 // initialisation de la page, pour un affichage au chargement
-getPeople();
+//getPeople();
