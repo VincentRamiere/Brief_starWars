@@ -1,16 +1,17 @@
 @font-face {
     font-family: "Montserrat";
-    src: url("../fonts/Montserrat-Bold.ttf") format("ttf");
+    src: url("../fonts/Montserrat-Bold.ttf") format("truetype");
     }
 
 @font-face {
     font-family: "OpenSans";
-    src: url("../fonts/OpenSans-Regular.ttf") format("ttf"),
-    url("../fonts/OpenSans-SemiBold.ttf") format("ttf");
+    src: url("../fonts/OpenSans-Regular.ttf") format("truetype"),
+    url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
     }
 
 body{
-    
+    font-family: "Montserrat";
+    color: #fff;
     background-color: #031010;
     color: #fff;
     text-align: center;
@@ -19,12 +20,44 @@ body{
 header{
     width: 100%;
     height: 200px;
-    text-align: center;
+    justify-content: center;
+    position: sticky;
+    top: 0%;
     background-color:#2A4158;
+    display: flex;
+    flex-flow: wrap column ;
+   
 }
 
-.navAccueil{
+nav{
+    display: flex;
+    flex-flow: wrap column ;
+    justify-content: center;
+}
 
+.SearchBar{
+    width: 784px;
+    height: 46px;
+    
+}
+
+ul{
+    display: flex;
+    flex-flow: wrap row ;
+    justify-content: space-evenly;
+
+}
+
+li{
+    list-style: none;
+
+    
+}
+a{
+    font-family: "Montserrat";
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
 }
 
 .navSearch{
@@ -44,6 +77,13 @@ h2{
 
 }
 
+.details{
+    display:none;
+}
+
+.active{
+    display: block;
+}
 .data{
 
 }
@@ -60,6 +100,10 @@ p{
     
 
 }
+
 footer{
-    background-color: #2A4158;
+    width: auto;
+    height: 400px; 
+    background-image:url(../images/footer.png);
+    background-size: 100% ;
 }

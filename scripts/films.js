@@ -96,7 +96,7 @@ async function getStarships(liste,div) {
         const VAISSEAUX = await fetch(url[i]);
         const VAISSEAU = await VAISSEAUX.json();
 
-        document.getElementById(div).innerHTML += `<h3>${VAISSEAU.name}</h3>`;
+        document.getElementById(div).innerHTML += `<p>${VAISSEAU.name}</p>`;
     }
 }
 
@@ -108,7 +108,7 @@ async function getSpecies(liste,div){
         const ESPECES = await fetch(url[i]);
         const ESPECE = await ESPECES.json();
 
-        document.getElementById(div).innerHTML += `<h3>${ESPECE.name}</h3>`;
+        document.getElementById(div).innerHTML += `<p>${ESPECE.name}</p>`;
     }
 }
 

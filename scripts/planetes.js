@@ -2,7 +2,7 @@ const API_URL =  "https://swapi.dev/api/planets/?page=";
 let pageEnCours = 1;
 
 
-// function pour afficher les peoples et leur correspondances
+// function pour afficher les planetes et leur correspondances
 async function getPlanets() {
     const PLANETS = await fetch(API_URL+pageEnCours);
     const PLANET = await PLANETS.json();
@@ -11,7 +11,7 @@ async function getPlanets() {
     // on vide le div
     document.getElementById('container').innerHTML = "";
 
-    // boucle pour parser les peoples
+    // boucle pour parser les planetes
     for(i=0;i<total_pages;i++){
       const PLANET_NAME = PLANET.results[i].name;
       const ROTATION_PERIOD = PLANET.results[i].rotation_period;
@@ -23,17 +23,7 @@ async function getPlanets() {
       const SURFACE_WATER = PLANET.results[i].surface_water;
       const POPULATION = PLANET.results[i].population;
 
-      
-      
     
-
-      // boucle pour parser les films
-    //   for(j=0;j<people.results[i].films.length;j++){
-    //       const films = await fetch(people.results[i].films[j]);
-    //       const film = await films.json();
-    //       console.log(film.title);
-    //       movies += `<p>${film.title}</p>`;
-    //   }
       document.getElementById('container').innerHTML += `
           <section class="card"> 
           <h2>${PLANET_NAME}</h2>
@@ -117,7 +107,7 @@ async function getFilms(liste,div) {
         const FILM = await FILMS.json();
         //console.log(film);
 
-        document.getElementById(div).innerHTML += `<h2>${FILM.title}</h2>`;
+        document.getElementById(div).innerHTML += `<p>${FILM.title}</p>`;
     }
 
 
@@ -135,7 +125,7 @@ async function getResidents(liste,div) {
         const RESIDENT = await RESIDENTS.json();
         //console.log(film);
 
-        document.getElementById(div).innerHTML += `<h2>${RESIDENT.name}</h2>`;
+        document.getElementById(div).innerHTML += `<p>${RESIDENT.name}</p>`;
     }
 
 
