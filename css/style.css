@@ -5,15 +5,13 @@
 
 @font-face {
     font-family: "OpenSans";
-    src: url("../fonts/OpenSans-Regular.ttf") format("truetype"),
-    url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
+    src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
     }
 
 body{
     font-family: "Montserrat";
     color: #fff;
     background-color: #031010;
-    color: #fff;
     text-align: center;
     }
 
@@ -35,12 +33,17 @@ nav{
     justify-content: center;
 }
 
-.SearchBar{
-    width: 784px;
-    height: 46px;
-    
+.searchBar{
+    margin-top: 20px;
 }
-
+ input{
+    width: 784px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding-left: 10px;
+    text-align: start;   
+ }
 ul{
     display: flex;
     flex-flow: wrap row ;
@@ -63,14 +66,39 @@ a{
 .navSearch{
 
 }
-
+.banner{
+    width: auto;
+    height: 600px; 
+    background-image:url(../images/ban.png);
+    background-size: 100% 100%;
+    margin-bottom: 100px;
+}
 h1{
     font-size: 48px;
+    color: #fff;
     
 }
 
-h2{
+.container{
+    
+    display: flex;
+    flex-flow: wrap column ;
+    justify-content: center;
+}
+.presentation{
+    margin: 100px;
+    font-size: 20px;
+    color: #F5ED17;
+    width: 1050px;
 
+}
+h2{
+    font-size: 30px;
+    color:#F5ED17 ;
+}
+
+.etendre{
+    color: #F5ED17;
 }
 
 .card{
@@ -89,17 +117,39 @@ h2{
 }
 
 h3{
+    font-size: 18px;
 
 }
 
 p{
-
+    font-family: "OpenSans";
+    font-size: 15px;
 }
 
 .boutons{
-    
-
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
+
+.allButtons{
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 50PX;
+    height: 50PX;
+    border: none;
+    background-color: #FF2606 ;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    
+}
+ .allButtons:hover{
+    background-color: #fff ;
+    color: black;
+    cursor: pointer;
+   
+ }
 
 footer{
     width: auto;
