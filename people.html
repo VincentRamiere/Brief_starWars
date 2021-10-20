@@ -7,6 +7,15 @@
     <title>Brief Star Wars - People</title>
     
     <script src="./scripts/people.js" defer></script>
+    <style type="text/css">
+        .details{
+            display:none;
+        }
+
+        .active{
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,7 +27,7 @@
                 <li><a href="planetes.html">Planètes</a></li>
               </ul>
         </nav>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="SearchBar">
+        <input type="text" id="myInput" placeholder="Search for names.." class="SearchBar">
     </header> 
 
     <section id="container" style="font-size:12px;">
