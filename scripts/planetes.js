@@ -45,34 +45,38 @@ async function getPlanets() {
             <h3>ORBITAL :</h3>
             <p>${ORBITAL_PERIOD}</p>
             </div>
-          <div>
+          <div class="data">
             <h3>Diameter :</h3>
             <p>${DIAMETER}</p>
             </div>
-          <div>
+          <div class="data">
             <h3>Climate :</h3>
             <p>${CLIMATE}</p>
             </div>
-          <div>
+          <div class="data" >
             <h3>Gravity : </h3>
             <p>${GRAVITY}</p>
             </div>
-          <div>
+          <div class="data" >
             <h3>Terrain :</h3>
             <p>${TERRAIN}</p>
             </div>
-          <div>
+          <div class="data">
             <h3>Surface water : </h3>
             <p>${SURFACE_WATER}</p>
             </div>
-          <div>
+          <div class="data">
             <h3>Population :</h3
             <p>${POPULATION}</p>
             </div>
-          <button class="films" value="${PLANET.results[i].films}">Films</button>
-          <div id="detailsFilms${i}"></div>
-          <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
-          <div id="detailsResidents${i}"></div>
+          <div class="data">
+            <button class="films" value="${PLANET.results[i].films}">Films</button>
+            <div id="detailsFilms${i}"></div>
+          </div>
+          <div class="data">
+            <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
+            <div id="detailsResidents${i}"></div>
+          </div>  
           </section>
         
           `;
