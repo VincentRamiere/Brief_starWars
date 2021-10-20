@@ -84,12 +84,17 @@ h1{
     display: flex;
     flex-flow: wrap column ;
     justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 100px;
 }
 .presentation{
-    margin: 100px;
+    margin: auto;
     font-size: 20px;
     color: #F5ED17;
-    width: 1050px;
+    max-width: 900px;
+    line-height: 25pt;
+    margin-bottom: 100px;
+    
 
 }
 h2{
@@ -99,23 +104,49 @@ h2{
 
 .etendre{
     color: #F5ED17;
+    font-size: 30px;
 }
 
 .card{
+    
+    padding-top: 25px;
+    padding-bottom: 25px;
 
 }
 
 .details{
     display:none;
+    
 }
 
 .active{
-    display: block;
+    
+    max-width: 900px;
+    background-color: #2A4158;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 50px;
+    border-radius: 25px;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 25px;
 }
+
 .data{
-
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    margin-right: 50px;
+    padding: 25px; 
+    
 }
-
+.starships, .species, .films, .residents{
+    all: unset;
+    cursor: pointer;
+    font-size: 18px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
 h3{
     font-size: 18px;
 
@@ -130,6 +161,8 @@ p{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .allButtons{

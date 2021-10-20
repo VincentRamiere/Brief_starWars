@@ -126,7 +126,7 @@ async function getFilms(liste,div) {
         const film = await films.json();
         //console.log(film);
 
-        document.getElementById(div).innerHTML += `<h2>${film.title}</h2>`;
+        document.getElementById(div).innerHTML += `<p>${film.title}</p>`;
     }
 
 

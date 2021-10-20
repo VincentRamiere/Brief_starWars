@@ -35,7 +35,7 @@ async function getPlanets() {
               <p>${ROTATION_PERIOD}</p>
             </div>
             <div class="data">
-              <h3>ORBITAL :</h3>
+              <h3>Orbital :</h3>
               <p>${ORBITAL_PERIOD}</p>
               </div>
             <div class="data">
