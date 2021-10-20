@@ -55,7 +55,7 @@ class People {
                 <p>${this.gender}</p>
             </div>            
 
-            <button class="films" value="${this.films}">Voir les films</button>
+            <button class="films" value="${this.films}">Voir les films +</button>
             <div id="detailsFilms${this.index}"></div>
             </div>
         </section>
@@ -69,9 +69,6 @@ async function getPeople() {
     const people = await peoples.json();
     const total_pages = people.count/people.results.length;
     tableau_perso = [];
-
-
-
 
     // on vide le div
     document.getElementById('container').innerHTML = "";
@@ -197,7 +194,8 @@ function searchPeople() {
 
         const accordion = document.getElementsByClassName('etendre');
         for (i=0; i<accordion.length; i++) {
-            accordion[i].addEventListener('click', function () {
+            accordion[i].addEventListener('click', function (e) {
+                e.preventDefault();
                 //console.log('this.nextElementSibling');
                 this.nextElementSibling.classList.toggle('active');
           });

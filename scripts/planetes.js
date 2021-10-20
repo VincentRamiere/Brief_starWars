@@ -1,5 +1,6 @@
 const API_URL =  "https://swapi.dev/api/planets/?page=";
 let pageEnCours = 1;
+let tableau_perso = new Array();
 
 
 // function pour afficher les planetes et leur correspondances
@@ -7,6 +8,7 @@ async function getPlanets() {
     const PLANETS = await fetch(API_URL+pageEnCours);
     const PLANET = await PLANETS.json();
     const total_pages = PLANET.count/PLANET.results.length;
+    tableau_perso = [];
 
     // on vide le div
     document.getElementById('container').innerHTML = "";
@@ -61,17 +63,19 @@ async function getPlanets() {
               <p>${POPULATION}</p>
               </div>
             <div class="data">
-              <button class="films" value="${PLANET.results[i].films}">Films</button>
+              <button class="films" value="${PLANET.results[i].films}">Voir les films +</button>
               <div id="detailsFilms${i}"></div>
             </div>
             <div class="data">
-              <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
+              <button class="residents" value="${PLANET.results[i].residents}">Voir les résidents +</button>
               <div id="detailsResidents${i}"></div>
             </div>
           </div>  
           </section>
         
           `;
+
+          tableau_perso.push({name:PLANET_NAME,rotation:ROTATION_PERIOD,orbital:ORBITAL_PERIOD,diameter:DIAMETER,climate:CLIMATE,gravity:GRAVITY,terrain:TERRAIN,surface:SURFACE_WATER,population:POPULATION});
       }
       const BUTTONS_FILMS = document.querySelectorAll('.films');
       for(var i = 0;i < BUTTONS_FILMS.length;i++){
@@ -182,6 +186,76 @@ fetch(API_URL)
 
 
 }});
+
+document.getElementById('myInput').addEventListener("keyup", function() {
+  searchPeople();
+});
+
+function searchPeople() {
+  // Declare variables
+  let query = myInput.value;
+  // if(query.length>1){
+  //     getSearch(query);
+  // }else{
+  //     getPeople();
+  // }
+  //console.log(tableau_perso);
+  let results = tableau_perso.filter(user=>user.name.includes(query));
+  console.log(results);
+  document.getElementById('container').innerHTML = "";
+  for(i=0;i<results.length;i++){
+        document.getElementById('container').innerHTML += `
+        <section class="card"> 
+        <h2 style="display: inline;">${results[i].name}</h2>  </h2><a href="#" class="etendre">+</a>
+        <div class="details">
+          <div class="data"> 
+            <h3>Rotation :</h3> 
+            <p>${results[i].rotation}</p>
+          </div>
+          <div>
+            <h3>ORBITAL :</h3>
+            <p>${results[i].orbital}</p>
+            </div>
+          <div class="data">
+            <h3>Diameter :</h3>
+            <p>${results[i].diameter}</p>
+            </div>
+          <div class="data">
+            <h3>Climate :</h3>
+            <p>${results[i].climate}</p>
+            </div>
+          <div class="data" >
+            <h3>Gravity : </h3>
+            <p>${results[i].gravity}</p>
+            </div>
+          <div class="data" >
+            <h3>Terrain :</h3>
+            <p>${results[i].terrain}</p>
+            </div>
+          <div class="data">
+            <h3>Surface water : </h3>
+            <p>${results[i].surface}</p>
+            </div>
+          <div class="data">
+            <h3>Population :</h3
+            <p>${results[i].population}</p>
+            </div>
+
+        </div>  
+        </section>
+      
+        `;
+
+      const accordion = document.getElementsByClassName('etendre');
+      for (i=0; i<accordion.length; i++) {
+          accordion[i].addEventListener('click', function (e) {
+            e.preventDefault();
+              //console.log('this.nextElementSibling');
+              this.nextElementSibling.classList.toggle('active');
+        });
+      }
+  }
+}
 
 // initialisation de la page, pour un affichage au chargement
 getPlanets();

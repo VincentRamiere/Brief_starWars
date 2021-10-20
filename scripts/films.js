@@ -55,12 +55,12 @@ async function getMovies() {
                 </div>
 
                 <div class="data">
-                    <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
+                    <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux +</button>
                     <div id="detailsStarships${i}"></div>
                 </div>
 
                 <div class="data">
-                    <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
+                    <button class="species" value="${FILM.results[i].species}">Voir les especes +</button>
                     <div id="detailsSpecies${i}"></div>
                 </div>
             </div>
