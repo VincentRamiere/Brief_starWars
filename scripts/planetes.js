@@ -34,7 +34,7 @@ async function getPlanets() {
               <h3>Rotation :</h3> 
               <p>${ROTATION_PERIOD}</p>
             </div>
-            <div>
+            <div class="data">
               <h3>ORBITAL :</h3>
               <p>${ORBITAL_PERIOD}</p>
               </div>
@@ -212,7 +212,7 @@ function searchPeople() {
             <h3>Rotation :</h3> 
             <p>${results[i].rotation}</p>
           </div>
-          <div>
+          <div class="data">
             <h3>ORBITAL :</h3>
             <p>${results[i].orbital}</p>
             </div>

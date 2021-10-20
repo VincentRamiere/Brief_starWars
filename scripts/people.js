@@ -54,9 +54,10 @@ class People {
                 <h3>Gender :</h3> 
                 <p>${this.gender}</p>
             </div>            
-
-            <button class="films" value="${this.films}">Voir les films +</button>
-            <div id="detailsFilms${this.index}"></div>
+            <div class="data">
+                <button class="films" value="${this.films}">Voir les films +</button>
+                <div id="detailsFilms${this.index}"></div>
+            </div>
             </div>
         </section>
         `;
