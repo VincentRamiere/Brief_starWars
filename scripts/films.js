@@ -27,41 +27,42 @@ async function getMovies() {
     // Boucle pour parser les films
     document.getElementById('container').innerHTML += `
         <section class="card">
-            <h2>${TITRE}</h2>
+            <h2 style="display: inline;">${TITRE}</h2> <a href="#" class="etendre">+</a>
+            <div class="details">
+                <div class="data">
+                    <h3> Episode ID : </h3>
+                    <p>${EPISODE}</p>
+                </div>
 
-            <div class="data">
-                <h3> Episode ID : </h3>
-                <p>${EPISODE}</p>
-            </div>
+                <div class="data">
+                    <h3> Opening Crawl : </h3>
+                    <p>${OPENING}</p>
+                </div>
 
-            <div class="data">
-                <h3> Opening Crawl : </h3>
-                <p>${OPENING}</p>
-            </div>
+                <div class="data">
+                    <h3>Director : </h3>
+                    <p>${DIRECTOR}</p>
+                </div>
 
-            <div class="data">
-                <h3>Director : </h3>
-                <p>${DIRECTOR}</p>
-            </div>
+                <div class="data">
+                    <h3>Producer(s) :</h3>
+                    <p> ${PRODUCER}</p>
+                </div>
 
-            <div class="data">
-                <h3>Producer(s) :</h3>
-                <p> ${PRODUCER}</p>
-            </div>
+                <div class="data">
+                    <h3>Release Date :</h3>
+                    <p>${DATE}</p>
+                </div>
 
-            <div class="data">
-                <h3>Release Date :</h3>
-                <p>${DATE}</p>
-            </div>
+                <div class="data">
+                    <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
+                    <div id="detailsStarships${i}"></div>
+                </div>
 
-            <div class="data">
-                <button class="starships" value="${FILM.results[i].starships}">Voir les vaisseaux</button>
-                <div id="detailsStarships${i}"></div>
-            </div>
-
-            <div class="data">
-                <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
-                <div id="detailsSpecies${i}"></div>
+                <div class="data">
+                    <button class="species" value="${FILM.results[i].species}">Voir les especes</button>
+                    <div id="detailsSpecies${i}"></div>
+                </div>
             </div>
         </section>
     `;
@@ -83,6 +84,15 @@ async function getMovies() {
             BUTTON1.addEventListener("click", function() {
             getSpecies(BUTTON1.value,BUTTON1.nextElementSibling.id);
             });
+        }
+
+        const accordion = document.getElementsByClassName('etendre');
+        for (i=0; i<accordion.length; i++) {
+            accordion[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                //console.log('this.nextElementSibling');
+                this.nextElementSibling.classList.toggle('active');
+          });
         }
 }
 

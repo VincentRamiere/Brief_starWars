@@ -26,46 +26,48 @@ async function getPlanets() {
     
       document.getElementById('container').innerHTML += `
           <section class="card"> 
-          <h2>${PLANET_NAME}</h2>
-          <div class="data"> 
-            <h3>Rotation :</h3> 
-            <p>${ROTATION_PERIOD}</p>
-          </div>
-          <div>
-            <h3>ORBITAL :</h3>
-            <p>${ORBITAL_PERIOD}</p>
+          <h2 style="display: inline;">${PLANET_NAME}</h2>  </h2><a href="#" class="etendre">+</a>
+          <div class="details">
+            <div class="data"> 
+              <h3>Rotation :</h3> 
+              <p>${ROTATION_PERIOD}</p>
             </div>
-          <div class="data">
-            <h3>Diameter :</h3>
-            <p>${DIAMETER}</p>
+            <div>
+              <h3>ORBITAL :</h3>
+              <p>${ORBITAL_PERIOD}</p>
+              </div>
+            <div class="data">
+              <h3>Diameter :</h3>
+              <p>${DIAMETER}</p>
+              </div>
+            <div class="data">
+              <h3>Climate :</h3>
+              <p>${CLIMATE}</p>
+              </div>
+            <div class="data" >
+              <h3>Gravity : </h3>
+              <p>${GRAVITY}</p>
+              </div>
+            <div class="data" >
+              <h3>Terrain :</h3>
+              <p>${TERRAIN}</p>
+              </div>
+            <div class="data">
+              <h3>Surface water : </h3>
+              <p>${SURFACE_WATER}</p>
+              </div>
+            <div class="data">
+              <h3>Population :</h3
+              <p>${POPULATION}</p>
+              </div>
+            <div class="data">
+              <button class="films" value="${PLANET.results[i].films}">Films</button>
+              <div id="detailsFilms${i}"></div>
             </div>
-          <div class="data">
-            <h3>Climate :</h3>
-            <p>${CLIMATE}</p>
+            <div class="data">
+              <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
+              <div id="detailsResidents${i}"></div>
             </div>
-          <div class="data" >
-            <h3>Gravity : </h3>
-            <p>${GRAVITY}</p>
-            </div>
-          <div class="data" >
-            <h3>Terrain :</h3>
-            <p>${TERRAIN}</p>
-            </div>
-          <div class="data">
-            <h3>Surface water : </h3>
-            <p>${SURFACE_WATER}</p>
-            </div>
-          <div class="data">
-            <h3>Population :</h3
-            <p>${POPULATION}</p>
-            </div>
-          <div class="data">
-            <button class="films" value="${PLANET.results[i].films}">Films</button>
-            <div id="detailsFilms${i}"></div>
-          </div>
-          <div class="data">
-            <button class="residents" value="${PLANET.results[i].residents}">Résidents</button>
-            <div id="detailsResidents${i}"></div>
           </div>  
           </section>
         
@@ -91,6 +93,14 @@ async function getPlanets() {
         });
     }
        
+    const accordion = document.getElementsByClassName('etendre');
+    for (i=0; i<accordion.length; i++) {
+        accordion[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            //console.log('this.nextElementSibling');
+            this.nextElementSibling.classList.toggle('active');
+      });
+    }
     
   }
 

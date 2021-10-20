@@ -1,5 +1,6 @@
 const API_URL =  "https://swapi.dev/api/people/?page=";
 let pageEnCours = 1;
+let tableau_perso = new Array();
 
 class People {
     constructor(name, height, mass, hair_color, skin_color, eye_color, birth_year, gender, homeworld, index, films) {
@@ -19,7 +20,7 @@ class People {
     affichePeople () {
         document.getElementById('container').innerHTML += `
         <section class="card">
-            <h2 style="display: inline;">Name : ${this.name} </h2><a href="#" class="etendre">+</a>
+            <h2 style="display: inline;">${this.name} </h2><a href="#" class="etendre">+</a>
             <div class="details">
             <div class="data"> 
                 <h3>Né sur :</h3> 
@@ -67,6 +68,10 @@ async function getPeople() {
     const peoples = await fetch(API_URL+pageEnCours);
     const people = await peoples.json();
     const total_pages = people.count/people.results.length;
+    tableau_perso = [];
+
+
+
 
     // on vide le div
     document.getElementById('container').innerHTML = "";
@@ -88,6 +93,7 @@ async function getPeople() {
     //       console.log(film.title);
     //       movies += `<p>${film.title}</p>`;
     //   }
+            tableau_perso.push({name:people.results[i].name,height:people.results[i].height,mass:people.results[i].mass,hair_color:people.results[i].hair_color,skin_color:people.results[i].skin_color,eye_color:people.results[i].eye_color,birth_year:people.results[i].birth_year,gender:people.results[i].gender,homeworld:planet.name,index:i,films:people.results[i].films});
             const perso = new People(people.results[i].name,people.results[i].height,people.results[i].mass,people.results[i].hair_color,people.results[i].skin_color,people.results[i].eye_color,people.results[i].birth_year,people.results[i].gender,planet.name,i,people.results[i].films);
             perso.affichePeople();
       }
@@ -102,11 +108,13 @@ async function getPeople() {
 
         const accordion = document.getElementsByClassName('etendre');
         for (i=0; i<accordion.length; i++) {
-            accordion[i].addEventListener('click', function () {
+            accordion[i].addEventListener('click', function (e) {
+                e.preventDefault();
                 //console.log('this.nextElementSibling');
                 this.nextElementSibling.classList.toggle('active');
           });
         }
+        
   }
 
 // function pour afficher les peoples et leur correspondances
@@ -115,7 +123,7 @@ async function getFilms(liste,div) {
     console.log(url);
     document.getElementById(div).innerHTML = "";
     for(i=0;i<url.length;i++){
-        console.log(url[i]);
+        //console.log(url[i]);
         const films = await fetch(url[i]);
         const film = await films.json();
         //console.log(film);
@@ -173,41 +181,19 @@ document.getElementById('myInput').addEventListener("keyup", function() {
 function searchPeople() {
     // Declare variables
     let query = myInput.value;
-    if(query.length>1){
-        getSearch(query);
-    }else{
-        getPeople();
-    }
-    
-    //let result = array.filter(user=>user.name.includes(query));
-    //console.log(result);
-    // document.getElementById('container').innerHTML = "";
-    // for(i=0;i<result.length;i++){
-    //     document.getElementById('container').innerHTML += `<p>${result[i].name}</p>`;
+    // if(query.length>1){
+    //     getSearch(query);
+    // }else{
+    //     getPeople();
     // }
-  }
-
-
-async function getSearch(query) {
+    //console.log(tableau_perso);
+    let results = tableau_perso.filter(user=>user.name.includes(query));
+    //console.log(result);
     document.getElementById('container').innerHTML = "";
-        const searchs = await fetch("https://swapi.dev/api/people/?search="+query);
-        const search = await searchs.json();
-        console.log(search);
-        for(i=0;i<search.count;i++){
-          const planets = await fetch(search.results[i].homeworld);
-          const planet = await planets.json();
-            
-            const perso = new People(search.results[i].name,search.results[i].height,search.results[i].mass,search.results[i].hair_color,search.results[i].skin_color,search.results[i].eye_color,search.results[i].birth_year,search.results[i].gender,planet.name,i,search.results[i].films);
-            perso.affichePeople();
-        }
-          const BUTTONS = document.querySelectorAll('.films');
-          for(var i = 0;i < BUTTONS.length;i++){
-              let BUTTON = BUTTONS[i];
-              BUTTON.addEventListener("click", function() {
-                   //console.log(BUTTON.nextElementSibling);
-                   getFilms(BUTTON.value,BUTTON.nextElementSibling.id);
-            });
-          }
+    for(i=0;i<results.length;i++){
+        //document.getElementById('container').innerHTML += `<p>${result[i].name}</p>`;
+        const perso = new People(results[i].name,results[i].height,results[i].mass,results[i].hair_color,results[i].skin_color,results[i].eye_color,results[i].birth_year,results[i].gender,results[i].homeworld,i,results[i].films);
+        perso.affichePeople();
 
         const accordion = document.getElementsByClassName('etendre');
         for (i=0; i<accordion.length; i++) {
@@ -216,9 +202,41 @@ async function getSearch(query) {
                 this.nextElementSibling.classList.toggle('active');
           });
         }
-
-
+    }
   }
+
+
+// async function getSearch() {
+//     document.getElementById('container').innerHTML = "";
+//         const searchs = await fetch("https://swapi.dev/api/people/?search="+query);
+//         const search = await searchs.json();
+//         console.log(search);
+//         for(i=0;i<search.count;i++){
+//           const planets = await fetch(search.results[i].homeworld);
+//           const planet = await planets.json();
+            
+//             const perso = new People(search.results[i].name,search.results[i].height,search.results[i].mass,search.results[i].hair_color,search.results[i].skin_color,search.results[i].eye_color,search.results[i].birth_year,search.results[i].gender,planet.name,i,search.results[i].films);
+//             perso.affichePeople();
+//         }
+//           const BUTTONS = document.querySelectorAll('.films');
+//           for(var i = 0;i < BUTTONS.length;i++){
+//               let BUTTON = BUTTONS[i];
+//               BUTTON.addEventListener("click", function() {
+//                    //console.log(BUTTON.nextElementSibling);
+//                    getFilms(BUTTON.value,BUTTON.nextElementSibling.id);
+//             });
+//           }
+
+//         const accordion = document.getElementsByClassName('etendre');
+//         for (i=0; i<accordion.length; i++) {
+//             accordion[i].addEventListener('click', function () {
+//                 //console.log('this.nextElementSibling');
+//                 this.nextElementSibling.classList.toggle('active');
+//           });
+//         }
+
+
+//   }
 
 // initialisation de la page, pour un affichage au chargement
 getPeople();
